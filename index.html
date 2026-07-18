@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing para Delivery | Sigma</title>
+<style>
+  :root{
+    --black:#0a0a0a;
+    --black2:#141414;
+    --white:#f5f5f3;
+    --gray:#8a8a8a;
+    --gray-dark:#2a2a2a;
+    --accent:#ffffff;
+    --line:#2c2c2c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--black);
+    color:var(--white);
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Arial Black',Arial,sans-serif;
+    letter-spacing:-0.02em;
+    text-transform:uppercase;
+  }
+  a{color:inherit;text-decoration:none;}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  img,video{max-width:100%;display:block;}
+
+  /* NAV */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(10,10,10,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;max-width:1180px;margin:0 auto;
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px;letter-spacing:2px;}
+  .logo svg{height:26px;width:26px;}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;
+    padding:140px 24px 60px;
+    position:relative;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.06), transparent 60%),
+      var(--black);
+  }
+  .hero .kicker{
+    color:var(--gray);font-size:13px;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:clamp(32px,6vw,64px);
+    max-width:920px;
+    line-height:1.05;
+  }
+  .hero h1 .hl{
+    background:linear-gradient(90deg,#fff,#9a9a9a);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.sub{
+    margin-top:24px;max-width:640px;color:#bdbdbd;font-size:16px;
+  }
+  .cta-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#fff;color:#000;font-weight:800;text-transform:uppercase;
+    letter-spacing:1px;font-size:14px;padding:18px 34px;border-radius:4px;
+    margin-top:36px;border:none;cursor:pointer;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,255,255,0.15);}
+
+  /* MARQUEE */
+  .marquee-wrap{
+    background:#fff;color:#000;padding:14px 0;overflow:hidden;white-space:nowrap;
+    font-weight:800;text-transform:uppercase;font-size:14px;letter-spacing:1px;
+    border-top:1px solid #000;border-bottom:1px solid #000;
+  }
+  .marquee{display:inline-block;padding-left:100%;animation:scroll 28s linear infinite;}
+  .marquee span{margin:0 18px;}
+  @keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+
+  /* FORM SECTION */
+  .form-section{
+    padding:90px 24px;background:var(--black2);
+    border-bottom:1px solid var(--line);
+  }
+  .form-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1180px;margin:0 auto;
+    align-items:start;
+  }
+  .form-left .aviso{color:var(--gray);font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+  .form-left h2{font-size:clamp(26px,4vw,38px);margin-bottom:32px;line-height:1.15;}
+  .step{display:flex;gap:16px;margin-bottom:28px;}
+  .step-num{
+    flex-shrink:0;width:34px;height:34px;border:1px solid var(--gray);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;
+  }
+  .step h3{font-size:15px;text-transform:none;font-family:inherit;font-weight:700;margin-bottom:4px;}
+  .step p{color:var(--gray);font-size:14px;}
+
+  form{
+    background:var(--black);border:1px solid var(--line);border-radius:10px;padding:32px;
+  }
+  form input, form select{
+    width:100%;background:#111;border:1px solid var(--line);color:#fff;
+    padding:14px 16px;border-radius:6px;margin-bottom:14px;font-size:14px;
+  }
+  form input::placeholder{color:#7a7a7a;}
+  form label{display:block;font-size:12px;color:var(--gray);margin:-4px 0 8px;}
+  .submit-btn{
+    width:100%;background:#fff;color:#000;font-weight:800;text-transform:uppercase;
+    letter-spacing:1px;padding:16px;border:none;border-radius:6px;font-size:14px;cursor:pointer;margin-top:6px;
+    transition:opacity .2s;
+  }
+  .submit-btn:hover{opacity:.85;}
+
+  /* SECTION HEADERS */
+  .eyebrow{color:var(--gray);font-size:12px;letter-spacing:3px;text-transform:uppercase;text-align:center;margin-bottom:14px;}
+  .section-title{
+    text-align:center;font-size:clamp(24px,4vw,38px);max-width:760px;margin:0 auto 50px;line-height:1.2;
+  }
+  section{padding:100px 24px;}
+
+  /* TESTIMONIALS */
+  .testimonials{background:var(--black);}
+  .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto;}
+  .test-card{
+    position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/4;background:#111;
+    border:1px solid var(--line);
+  }
+  .test-card img,.test-card video{width:100%;height:100%;object-fit:cover;}
+  .play-btn{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,0.9);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .test-caption{position:absolute;bottom:0;left:0;right:0;padding:16px;background:linear-gradient(0deg,rgba(0,0,0,0.85),transparent);font-size:13px;font-weight:600;}
+
+  /* QUEM SOMOS */
+  .quem-somos{background:var(--black2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .qs-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center;max-width:1180px;margin:0 auto;}
+  .qs-photos{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .qs-photos img{border-radius:10px;border:1px solid var(--line);}
+  .qs-text .eyebrow{text-align:left;}
+  .qs-text h2{font-size:clamp(24px,3.4vw,34px);text-align:left;margin-bottom:20px;}
+  .qs-text p{color:#c2c2c2;margin-bottom:16px;font-size:15px;}
+
+  /* METODO */
+  .metodo{text-align:center;}
+  .metodo-diagram{
+    width:280px;height:280px;margin:60px auto;position:relative;
+  }
+  .metodo-diagram svg{width:100%;height:100%;}
+  .metodo-labels{
+    display:flex;justify-content:center;gap:40px;flex-wrap:wrap;max-width:700px;margin:0 auto;color:var(--gray);
+    font-size:13px;text-transform:uppercase;letter-spacing:1px;
+  }
+
+  /* O QUE FAZEMOS */
+  .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1100px;margin:0 auto;}
+  .card{
+    background:var(--black2);border:1px solid var(--line);border-radius:10px;padding:28px;
+    transition:border-color .2s;
+  }
+  .card:hover{border-color:#555;}
+  .card h3{font-family:inherit;text-transform:none;font-size:17px;margin-bottom:10px;color:#fff;}
+  .card ul{list-style:none;color:#b8b8b8;font-size:13.5px;}
+  .card li{margin-bottom:8px;padding-left:18px;position:relative;}
+  .card li:before{content:"✓";position:absolute;left:0;color:#fff;font-weight:700;}
+
+  /* PLANOS */
+  .planos{background:var(--black2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;}
+  .planos-chart{max-width:700px;margin:50px auto 0;height:200px;}
+
+  /* TIME EXCLUSIVO CTA */
+  .cta-band{
+    background:#fff;color:#000;text-align:center;padding:90px 24px;
+  }
+  .cta-band .eyebrow{color:#555;}
+  .cta-band h2{color:#000;max-width:800px;}
+  .cta-band p{max-width:640px;margin:20px auto 0;color:#333;font-size:15px;}
+  .cta-band .cta-btn{background:#000;color:#fff;}
+  .cta-band .cta-btn:hover{box-shadow:0 8px 24px rgba(0,0,0,0.25);}
+  .online-badge{
+    display:inline-flex;align-items:center;gap:8px;margin-top:24px;font-size:13px;color:#333;font-weight:600;
+  }
+  .online-dot{width:8px;height:8px;border-radius:50%;background:#1db954;}
+
+  /* FAQ */
+  .faq{max-width:760px;margin:0 auto;}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;background:none;border:none;color:#fff;text-align:left;padding:22px 0;
+    font-size:16px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+  }
+  .faq-q .plus{font-size:20px;color:var(--gray);transition:transform .25s;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;color:#b8b8b8;font-size:14.5px;}
+  .faq-a p{padding-bottom:20px;}
+
+  /* FOOTER */
+  footer{padding:50px 24px;border-top:1px solid var(--line);text-align:center;color:var(--gray);font-size:13px;}
+  footer .flogo{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:16px;font-weight:900;letter-spacing:2px;color:#fff;}
+  .socials{display:flex;justify-content:center;gap:20px;margin-top:16px;}
+  .socials a{color:var(--gray);font-size:13px;}
+  .socials a:hover{color:#fff;}
+
+  @media(max-width:860px){
+    .form-grid, .qs-grid{grid-template-columns:1fr;}
+    .test-grid{grid-template-columns:1fr;max-width:340px;}
+    .cards-grid{grid-template-columns:1fr;}
+    .qs-photos{order:2;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">
+      <img src="data:image/jpeg;base64,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" alt="Sigma" style="height:28px;width:28px;border-radius:6px;object-fit:cover;">
+      SIGMA
+    </div>
+    <a href="#form" class="cta-btn" style="padding:10px 20px;font-size:12px;margin:0;">Quero vender mais</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="kicker">Marketing 100% Delivery</div>
+  <h1>Fazemos o seu <span class="hl">delivery</span> vender 15 reais a cada um investido em tráfego pago.</h1>
+  <p class="sub">Esse é o resultado que geramos para donos de delivery que aplicaram o método Sigma — tráfego pago, cardápio digital, captação de conteúdo e gestão de plataforma — em menos de 90 dias.</p>
+  <a href="#form" class="cta-btn">Quero esse resultado no meu delivery ↗</a>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>+400 DELIVERIES ATIVOS</span>•<span>+300M EM VENDAS PARA NOSSOS CLIENTES</span>•<span>+5 ANOS DE EXPERIÊNCIA</span>•<span>100% FOCO EM DELIVERY</span>•
+    <span>+400 DELIVERIES ATIVOS</span>•<span>+300M EM VENDAS PARA NOSSOS CLIENTES</span>•<span>+5 ANOS DE EXPERIÊNCIA</span>•<span>100% FOCO EM DELIVERY</span>•
+  </div>
+</div>
+
+<section class="form-section" id="form">
+  <div class="form-grid">
+    <div class="form-left">
+      <div class="aviso">Aviso</div>
+      <h2>Não saia agora! Faltam poucos segundos para o seu delivery mudar.</h2>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Complete o formulário</h3>
+          <p>Forneça suas informações no formulário ao lado. Garantimos a segurança total dos seus dados. Serão usados apenas para contato.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>Receba uma ligação personalizada</h3>
+          <p>Em um prazo de até 5 minutos em horário comercial, um dos nossos especialistas entra em contato direto para agendar a reunião mais importante do seu delivery.</p>
+        </div>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('Formulário enviado! (demo)');">
+      <input type="text" placeholder="Seu nome" required>
+      <input type="email" placeholder="Seu melhor e-mail" required>
+      <input type="tel" placeholder="📱 Telefone" required>
+      <input type="text" placeholder="Nome da empresa" required>
+      <select required>
+        <option value="" selected disabled>Selecionar segmento</option>
+        <option>Delivery de pizza</option>
+        <option>Delivery de hamburguer</option>
+        <option>Marmita / comida caseira</option>
+        <option>Açaí / sorveteria delivery</option>
+        <option>Restaurante com foco em delivery</option>
+        <option>Dark kitchen</option>
+        <option>Outros</option>
+      </select>
+      <select required>
+        <option value="" selected disabled>Faturamento atual</option>
+        <option>Até 10 mil</option>
+        <option>10 mil até 20 mil</option>
+        <option>20 mil até 30 mil</option>
+        <option>30 mil até 50 mil</option>
+        <option>50 mil até 80 mil</option>
+        <option>80 mil até 150 mil</option>
+        <option>150 mil até 250 mil</option>
+        <option>Mais de 250 mil</option>
+      </select>
+      <select required>
+        <option value="" selected disabled>Investiria R$1.500/mês para vender mais?</option>
+        <option>Sim</option>
+        <option>Não</option>
+      </select>
+      <button type="submit" class="submit-btn">Receber mais informações</button>
+    </form>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="eyebrow">👥 Depoimentos</div>
+  <h2 class="section-title">Mais de 400 deliveries com resultado. Isso é Sigma.</h2>
+  <div class="test-grid">
+    <div class="test-card">
+      <video src="https://assessorialpha.com/wp-content/uploads/2025/10/639e209b-65e1-4163-adc5-2a20e5b00d84-video.mp4" muted loop playsinline poster=""></video>
+      <div class="play-btn">▶</div>
+      <div class="test-caption">"Dobramos os pedidos no iFood em 60 dias"</div>
+    </div>
+    <div class="test-card">
+      <video src="https://assessorialpha.com/wp-content/uploads/2025/10/639e209b-65e1-4163-adc5-2a20e5b00d84-video.mp4" muted loop playsinline></video>
+      <div class="play-btn">▶</div>
+      <div class="test-caption">"Reduzimos custo de aquisição em 40%"</div>
+    </div>
+    <div class="test-card">
+      <video src="https://assessorialpha.com/wp-content/uploads/2025/10/639e209b-65e1-4163-adc5-2a20e5b00d84-video.mp4" muted loop playsinline></video>
+      <div class="play-btn">▶</div>
+      <div class="test-caption">"Escalamos de 3 pra 8 pedidos por hora"</div>
+    </div>
+  </div>
+</section>
+
+<section class="quem-somos">
+  <div class="qs-grid">
+    <div class="qs-photos">
+      <img src="https://assessorialpha.com/wp-content/uploads/2025/10/time-alpha.jpg" alt="Time Sigma" onerror="this.style.display='none'">
+      <img src="https://assessorialpha.com/wp-content/uploads/2025/10/escritorio.jpg" alt="Escritório Sigma" onerror="this.style.display='none'">
+    </div>
+    <div class="qs-text">
+      <div class="eyebrow">Quem somos</div>
+      <h2>Líder em marketing de delivery e parceira do seu crescimento.</h2>
+      <p>Na Sigma, não somos apenas uma agência; somos a assessoria de marketing especializada 100% em delivery. Nascemos da paixão por transformar operações de delivery, elevando-as a um novo patamar de faturamento e eficiência.</p>
+      <p>Com um time enxuto e focado, altamente qualificado, a Sigma é a parceira estratégica que sua operação de delivery precisa.</p>
+      <p>Nosso time multidisciplinar, composto por gestores de tráfego, especialistas em cardápio digital e captação de conteúdo, trabalha em sinergia para garantir que cada pedido a mais seja rentável.</p>
+    </div>
+  </div>
+</section>
+
+<section class="metodo">
+  <div class="eyebrow">O método Sigma</div>
+  <h2 class="section-title">Existe um método comprovado para que seu delivery nunca pare de vender</h2>
+  <p style="color:var(--gray);max-width:500px;margin:0 auto;">Se você seguir, vai manter sua operação faturando pedido após pedido, todos os dias.</p>
+  <div class="metodo-diagram">
+    <svg viewBox="0 0 200 200">
+      <polygon points="100,20 170,60 170,140 100,180 30,140 30,60" fill="none" stroke="white" stroke-width="2" opacity="0.5"/>
+      <polygon points="100,45 148,72 148,128 100,155 52,128 52,72" fill="none" stroke="white" stroke-width="2" opacity="0.8"/>
+      <circle cx="100" cy="100" r="26" fill="white"/>
+      <text x="100" y="105" text-anchor="middle" font-size="10" fill="black" font-weight="bold">MONETIZAÇÃO</text>
+    </svg>
+  </div>
+  <div class="metodo-labels">
+    <span>Engajamento</span><span>Ativação</span><span>Aquisição</span><span>Indicação</span><span>Retenção</span>
+  </div>
+</section>
+
+<section>
+  <div class="eyebrow">O que fazemos?</div>
+  <h2 class="section-title">A Sigma estrutura o marketing do seu delivery com base na sua necessidade</h2>
+  <div class="cards-grid">
+    <div class="card">
+      <h3>Gestão de Tráfego</h3>
+      <ul>
+        <li>Campanhas de tráfego pago focadas em pedidos, não em curtidas</li>
+        <li>Estruturação de Meta Ads e Google Ads para delivery</li>
+        <li>Otimização constante de custo por pedido</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Cardápio Digital</h3>
+      <ul>
+        <li>Estruturação do cardápio para maior ticket médio</li>
+        <li>Hierarquia visual e produtos âncora</li>
+        <li>Campanhas sazonais de alta conversão</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Captação de Vídeo e Foto</h3>
+      <ul>
+        <li>Produção de conteúdo profissional dos seus produtos</li>
+        <li>Material pronto pra usar em anúncios e cardápio</li>
+        <li>Padrão visual consistente em todas as peças</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Google Meu Negócio</h3>
+      <ul>
+        <li>Otimização completa do perfil pra aparecer nas buscas locais</li>
+        <li>Gestão de avaliações e reputação</li>
+        <li>Aumento de visibilidade pra quem busca delivery na sua região</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Gestão de Plataforma de Delivery</h3>
+      <ul>
+        <li>Otimização de posicionamento no iFood e apps próprios</li>
+        <li>Gestão de promoções e cupons estratégicos</li>
+        <li>Aumento de nota e recorrência de clientes</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Relatórios e Acompanhamento</h3>
+      <ul>
+        <li>Monitoramento dos indicadores mais importantes do seu delivery</li>
+        <li>Análises semanais para tomada de decisão rápida</li>
+        <li>Reuniões semanais de alinhamento</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="planos">
+  <div class="eyebrow">Planos personalizados</div>
+  <h2 class="section-title">Você escolhe a solução certa para a fase que seu delivery vive hoje.</h2>
+  <p style="color:var(--gray);max-width:560px;margin:0 auto;">Oferecemos nossos serviços por planos flexíveis. Você escolhe conforme sua condição atual. O mais importante é continuar apostando em estratégias que trazem resultado.</p>
+  <div class="planos-chart">
+    <svg viewBox="0 0 700 200" width="100%" height="100%">
+      <polyline points="0,150 100,120 200,140 300,90 400,110 500,50 600,70 700,20"
+        fill="none" stroke="white" stroke-width="3"/>
+      <polyline points="0,150 100,120 200,140 300,90 400,110 500,50 600,70 700,20 700,200 0,200"
+        fill="rgba(255,255,255,0.08)" stroke="none"/>
+    </svg>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="eyebrow">Receba um time exclusivo</div>
+  <h2 class="section-title">A Sigma estrutura o marketing do seu delivery com base na sua necessidade</h2>
+  <p>Tenha um time de especialistas ao seu lado ou terceirize totalmente seu marketing e setor comercial com a Sigma. Sem dor de cabeça com contratações, gestão de equipe, riscos trabalhistas ou burocracias — você foca no seu delivery, e a gente foca em fazer ele crescer.</p>
+  <a href="#form" class="cta-btn">Quero mais informações</a>
+  <div class="online-badge"><span class="online-dot"></span> Especialistas online agora</div>
+</section>
+
+<section class="faq">
+  <div class="eyebrow">Perguntas frequentes</div>
+  <h2 class="section-title">Ficou com alguma dúvida sobre a Sigma? Talvez ela esteja aqui.</h2>
+
+  <div class="faq-item">
+    <button class="faq-q">O que exatamente a Sigma faz? <span class="plus">+</span></button>
+    <div class="faq-a"><p>Somos uma assessoria especializada 100% em marketing para delivery. Ajudamos operações de delivery, dark kitchens e restaurantes com foco em delivery a vender mais por meio de gestão de tráfego, cardápio digital, captação de foto e vídeo, Google Meu Negócio e gestão de plataforma.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">Posso cancelar quando quiser? <span class="plus">+</span></button>
+    <div class="faq-a"><p>Sim, você pode cancelar sua assinatura a qualquer momento.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">Em quanto tempo vou ver resultados? <span class="plus">+</span></button>
+    <div class="faq-a"><p>Depende do estágio atual do seu delivery, estrutura interna e investimento. Mas, na maioria dos casos, nossos clientes sentem o impacto positivo nos pedidos em 30 a 60 dias.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">Vocês atendem qualquer tipo de delivery? <span class="plus">+</span></button>
+    <div class="faq-a"><p>Atendemos desde operações pequenas até redes com múltiplas unidades, desde que estejam dispostas a seguir um plano estratégico de crescimento.</p></div>
+  </div>
+  <div class="faq-item">
+    <button class="faq-q">A Sigma trabalha com redes sociais / social media? <span class="plus">+</span></button>
+    <div class="faq-a"><p>Não. A Sigma é 100% focada em delivery: tráfego pago, cardápio digital, captação de foto e vídeo, Google Meu Negócio e gestão de plataforma. Não fazemos gestão de social media.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo">
+    <img src="data:image/jpeg;base64,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" alt="Sigma" style="height:22px;width:22px;border-radius:5px;object-fit:cover;">
+    SIGMA
+  </div>
+  <div>2026 © Sigma Assessoria. Todos os direitos reservados.</div>
+  <div class="socials">
+    <a href="#">Instagram</a><a href="#">TikTok</a><a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.faq-item').forEach(item=>{
+  const q = item.querySelector('.faq-q');
+  const a = item.querySelector('.faq-a');
+  q.addEventListener('click',()=>{
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null;});
+    if(!isOpen){
+      item.classList.add('open');
+      a.style.maxHeight = a.scrollHeight+'px';
+    }
+  });
+});
+document.querySelectorAll('video').forEach(v=>{v.play().catch(()=>{});});
+</script>
+
+</body>
+</html>
