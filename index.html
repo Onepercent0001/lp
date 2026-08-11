@@ -282,21 +282,22 @@
         </div>
       </div>
     </div>
-    <form onsubmit="event.preventDefault(); alert('Formulário enviado! (demo)');">
-      <input type="text" placeholder="Seu nome" required>
-      <input type="tel" placeholder="Telefone" required>
-      <select required>
+    <form id="lead-form">
+      <input type="text" id="lf-nome" placeholder="Seu nome" required>
+      <input type="tel" id="lf-telefone" placeholder="Telefone" required>
+      <select id="lf-trafego" required>
         <option value="" selected disabled>Já investiu em tráfego?</option>
         <option>Sim</option>
         <option>Não</option>
       </select>
-      <select required>
+      <select id="lf-investimento" required>
         <option value="" selected disabled>Investiria R$2.000/mês para vender mais?</option>
         <option>Sim</option>
         <option>Não</option>
       </select>
-      <button type="submit" class="submit-btn">Receber mais informações</button>
+      <button type="submit" class="submit-btn" id="lf-submit-btn">Receber mais informações</button>
     </form>
+    <p id="lf-status" style="margin-top:12px;font-size:13px;color:var(--gray);text-align:center;"></p>
   </div>
 </section>
 
@@ -471,6 +472,52 @@ document.querySelectorAll('.faq-item').forEach(item=>{
   });
 });
 document.querySelectorAll('video').forEach(v=>{v.play().catch(()=>{});});
+
+// Integração com Trello
+const TRELLO_KEY = '2a2729ce4f28f3dbe2567c5fe3e1763b';
+const TRELLO_TOKEN = '0a7e3d701193cbe964e9aff5d95f28fd6ddf88b840fd5551589fa9367154aa2c';
+const TRELLO_LIST_ID = '6a7a5657aba7689e0d7fb0d4';
+
+const leadForm = document.getElementById('lead-form');
+const lfStatus = document.getElementById('lf-status');
+const lfBtn = document.getElementById('lf-submit-btn');
+
+leadForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const nome = document.getElementById('lf-nome').value.trim();
+  const telefone = document.getElementById('lf-telefone').value.trim();
+  const trafego = document.getElementById('lf-trafego').value;
+  const investimento = document.getElementById('lf-investimento').value;
+
+  const cardName = `Lead: ${nome}`;
+  const cardDesc = [
+    `**Telefone:** ${telefone}`,
+    `**Já investiu em tráfego:** ${trafego}`,
+    `**Investiria R$2.000/mês:** ${investimento}`
+  ].join('\n');
+
+  lfBtn.disabled = true;
+  lfBtn.textContent = 'Enviando...';
+  lfStatus.textContent = '';
+
+  try {
+    const url = `https://api.trello.com/1/cards?key=${TRELLO_KEY}&token=${TRELLO_TOKEN}&idList=${TRELLO_LIST_ID}&name=${encodeURIComponent(cardName)}&desc=${encodeURIComponent(cardDesc)}`;
+    const response = await fetch(url, { method: 'POST' });
+
+    if (!response.ok) throw new Error('Falha ao enviar');
+
+    lfStatus.textContent = 'Recebemos seus dados! Em breve entraremos em contato.';
+    lfStatus.style.color = '#8ae08a';
+    leadForm.reset();
+  } catch (err) {
+    lfStatus.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
+    lfStatus.style.color = '#e08a8a';
+  } finally {
+    lfBtn.disabled = false;
+    lfBtn.textContent = 'Receber mais informações';
+  }
+});
 </script>
 
 </body>
